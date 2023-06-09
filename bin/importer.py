@@ -39,28 +39,7 @@ form_class = loadUiType("./ui/mainwindow.ui")[0]  # Load the UI
 dialog_class = loadUiType("./ui/dialogRenameFile.ui")[0]  # Load the UI
 
 
-#################### For This Branch ####################
 
-
-
-#################### First Priority ####################
-
-# TODO Reset settings
-
-# TODO "About" section that contains version information for the program.
-
-#################### Second Priority ####################
-
-# TODO Make the program prettier
-
-# TODO Error handling inside the program
-
-# TODO Give items background colors. # item.setBackground("black")
-
-#################### Third Priority ####################
-
-# TODO Make sure Tab Order is correct in QtDesigner. 
-#      As in the order of items to cycle thrugh when pressing TAB
 
 
 class MyWindowClass(QMainWindow, form_class):
@@ -127,10 +106,13 @@ class MyWindowClass(QMainWindow, form_class):
 
             except UnboundLocalError:
                 pass
-    
+
     def Button_setDefaultExportPath(self):
         settingsHandler.SaveSetting("DefaultOutputFolder", str(folderPathExport))
         print("HellO!!")
+
+    def resetSettings(self):
+        settingsHandler.resetSettings(self)
 
     def updateImportList(self):
         # TODO Add filepath to Hover Tooltip
@@ -423,6 +405,14 @@ class Dialog(QDialog, dialog_class):
     def exec_(self):
         super().exec_()
         return self.button_pressed
+
+
+
+class AboutSection(QDialog):
+    def __init__(self):
+        super().__init__()
+
+    # TODO NEXT Lag About vinduet. 
 
 
 fileList = []

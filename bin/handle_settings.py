@@ -15,6 +15,8 @@ class SettingsHandlerClass:
     def __dir__(self):
         return list(self.settings.keys())
 
+
+
     def SaveSetting(self, key, value):
         self.settings[key] = value
         with open(self.settings_file, 'w') as f:
@@ -28,3 +30,11 @@ class SettingsHandlerClass:
 
     def HasDefaultInputfolder(self):
         return 'DefaultInputfolder' in self.settings
+    
+    def SetDefaultSettings(self):
+        defaultSettings = (
+            ("DefaultOutputFolder", ""),
+            ("DefaultInputfolder", "")
+        )
+        for setting in defaultSettings:
+            self.SaveSetting(self, setting[0], setting[1])
